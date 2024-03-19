@@ -19,15 +19,45 @@ Processing execution could be happened with unorganized way. It is decided by li
 * wait returns a number of child process id that "Wait" for.
 
 
-### Getpid, Getppid() 
+### Getpid, Getppid ? 
 * Identification number for processes
 * Every process has id
 * Getppid : Get parent process id
 * Every process id has its parent id also
 
-### Sleep
-* if there is child process, call this slepp function for waiting until the child process finishded.
+### Sleep ? 
+* if there is child process, call this sleep function for waiting until the child process finishded.
 
-### Pipe
+### Pipe ? 
 * Pipe is for communication among many processes
 * If fork() can save each memory value, why pipe is worth for use it ? Because even after there was successful change between many process, it is possible to have extra data information between processes. In this case, pipe()allows to send data information after forking. So it is important to use both on the correct timing.
+
+### Exec functions ( execlp, execvp, exevpe...)
+* These functions allow to execute other program inside of another program
+* But thiese functions OVERWRITE function which called execution.
+* Not only memories, they ovewrite order of execution 
+* Arguments : filepath and other arugments(filepath, OTHERS, NULL)
+* Always send NULL to the end of arguments
+
+### Exec & Fork
+* If execution overwrite all the current processes, we can fork them and execution in only one process...
+* So choosing correct child/parent processes are important.
+* If we call exec in parent process, child process will be zombie process.
+* But as soon as I call execution function in child proceses, this child process does not exist longer because of overwrite in fork. 
+* Execution overwrite all the functions once it is successfully executed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

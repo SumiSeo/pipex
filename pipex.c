@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/16 19:40:47 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/20 19:12:28 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,32 @@ void	pingGoogle(void)
 {
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	int id = fork();
-	printf("ID :  %d\n", id);
-	if (id == -1)
+	t_pipexdata *data;
+	enum error_msg errors;
+	(void)argv;
+	(void)envp;
+	(void)data;
+	if (argc != 5)
 	{
-		return (1);
+		errors = INVALID_ARGS;
+		printf("Argument number is not correct %u\n", errors);
+		return (*(int *)pipex_exit(NULL, NULL, INVALID_ARGS, NULL));
 	}
-	if (id == 0)
+	if (access(argv[1], F_OK) == -1)
 	{
-		printf("I am in the child process\n");
-		int err = execlp("ping", "ping", "-c", "3", "google.com", NULL);
-		if (err == -1)
-		{
-			printf("Could not find progrm to executed\n");
-			return (2);
-		}
+		// file does not exist,
+		errors = NO_FILE;
+		printf("sorry but this file does not exist");
+		// return (*(int *)pipex_exit(NULL, argv[1], NO_FILE, NULL));
 	}
-	else
+	if (access(argv[1], R_OK) == -1)
 	{
-		int waitstatus;
-		wait(&waitstatus);
-		if (WIFEXITED(waitstatus))
-		{
-			int statusCode = WEXITSTATUS(waitstatus);
-			if (statusCode == 0)
-			{
-				printf("Success\n");
-			}
-			else
-			{
-				printf("Failure with status Code : %d\n", statusCode);
-			}
-		}
-		printf("------------------------------------------------------------------------\n");
-		printf("Some post processing goes here ! \n");
+		// I can not read the file
+		errors = NO_PERMISSION;
+		printf("Sorry the file is existing but I can not read the file");
+		// return (*(int *)pipex_exit(NULL, argv[1], NO_PERMISSION, NULL));
 	}
-
-	printf("***TESTEST***\n");
 	return (0);
 }

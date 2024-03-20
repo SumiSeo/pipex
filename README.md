@@ -46,6 +46,16 @@ Processing execution could be happened with unorganized way. It is decided by li
 * But as soon as I call execution function in child proceses, this child process does not exist longer because of overwrite in fork. 
 * Execution overwrite all the functions once it is successfully executed
 
+### Access
+* It allow us to check if I have authorization to the file.
+* It takes two parameters. One is pathname and the other is authorization mode
+* R_OK : If the file exists ? Giving authorization for reading 
+* W_OK : If the file exsits ? Giving authorization for writing
+* X_OK : If the fle exists ? Giving authorization for executing
+* F_OK : If the file exists ? 
+
+
+### M
 
 
 

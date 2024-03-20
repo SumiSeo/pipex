@@ -6,7 +6,7 @@
 #    By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 14:06:51 by sumseo            #+#    #+#              #
-#    Updated: 2024/03/15 14:12:13 by sumseo           ###   ########.fr        #
+#    Updated: 2024/03/20 17:44:18 by sumseo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = pipex
 
 #SRCS AND OBJS FOR COMPILING
 
-SRCS = pipex.c
+SRCS = pipex.c error_handler.c
 #INCLUDES = 
 OBJS = $(SRCS:%.c=%.o)
 

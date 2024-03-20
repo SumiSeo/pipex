@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:47 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:20:42 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/20 19:27:48 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 void	*pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
 {
+	(void)data;
+	(void)cmd;
 	if (err < 3)
 	{
 		pipex_perror(param, err);
 	}
-	return (1);
+	return (0);
 }
 
 void	pipex_perror(char *param, int err)
 {
-	ft_putstr_fd("OOPSY *_* ! I am R2 ... I a m analy..zing... problem :  ", 2);
+	(void)param;
+	ft_putstr_fd("OOPSY *_* ! I am R2 ... I a m analy..zing... problem:", 2);
+	ft_putchar_fd('\n', 2);
 	if (err == INVALID_ARGS)
 	{
 		ft_putstr_fd("You put the wrong number of arguments !", 2);

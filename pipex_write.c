@@ -6,9 +6,11 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:17:51 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:20:07 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/20 19:26:32 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pipex.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

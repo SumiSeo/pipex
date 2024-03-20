@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:12:28 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/20 19:52:06 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@ void	pingGoogle(void)
 {
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **env)
 {
 	t_pipexdata *data;
 	enum error_msg errors;
 	(void)argv;
-	(void)envp;
+	(void)env;
 	(void)data;
 	if (argc != 5)
 	{
 		errors = INVALID_ARGS;
-		printf("Argument number is not correct %u\n", errors);
 		return (*(int *)pipex_exit(NULL, NULL, INVALID_ARGS, NULL));
 	}
 	if (access(argv[1], F_OK) == -1)
@@ -43,5 +42,8 @@ int	main(int argc, char **argv, char **envp)
 		printf("Sorry the file is existing but I can not read the file");
 		// return (*(int *)pipex_exit(NULL, argv[1], NO_PERMISSION, NULL));
 	}
+	char *cmd[2];
+	cmd[0] = "ls";
+	execve("/bin/ls", cmd, env);
 	return (0);
 }

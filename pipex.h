@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:02 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:52:04 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/21 16:59:51 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,26 @@
 
 // #define INVALID_ARGS "Arguments are invalid";
 
-enum	error_msg
+enum		error_msg
 {
 	INVALID_ARGS,
 	NO_FILE,
-	NO_PERMISSION
+	NO_PERMISSION,
+	NO_MEMORY
 };
 
 typedef struct s_pipexdata
 {
-	int	test;
-}		t_pipexdata;
+	char	*env_path;
+	char	**cmds;
+	int		in_fd;
+	
+}			t_pipexdata;
 
-void	*pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd);
-void	pipex_perror(char *param, int err);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
+int			pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd);
+void		pipex_perror(char *param, int err);
+void		ft_putnbr_fd(int n, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putchar_fd(char c, int fd);
 
 #endif

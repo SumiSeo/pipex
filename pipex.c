@@ -6,44 +6,49 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:52:06 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/21 17:02:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pingGoogle(void)
+t_pipexdata	*pipex_get_data(int argc, char **argv, int here_doc, char **env)
 {
+	t_pipexdata	*data;
+	int			i;
+	enum error_msg errors;
+	i = 0;
+	data = malloc(sizeof(struct s_pipexdata));
+	if (!data)
+	{
+		errors = NO_MEMORY;
+		((t_pipexdata *)pipex_exit(data, NULL, NO_MEMORY, NULL));
 }
-
 int	main(int argc, char **argv, char **env)
 {
-	t_pipexdata *data;
-	enum error_msg errors;
+	t_pipexdata		*data;
+	enum error_msg	errors;
+
+	// char			*cmd[2];
 	(void)argv;
-	(void)env;
 	(void)data;
 	if (argc != 5)
 	{
 		errors = INVALID_ARGS;
-		return (*(int *)pipex_exit(NULL, NULL, INVALID_ARGS, NULL));
+		return (pipex_exit(NULL, NULL, INVALID_ARGS, NULL));
 	}
 	if (access(argv[1], F_OK) == -1)
 	{
-		// file does not exist,
 		errors = NO_FILE;
-		printf("sorry but this file does not exist");
-		// return (*(int *)pipex_exit(NULL, argv[1], NO_FILE, NULL));
+		return (pipex_exit(NULL, argv[1], NO_FILE, NULL));
 	}
 	if (access(argv[1], R_OK) == -1)
 	{
-		// I can not read the file
 		errors = NO_PERMISSION;
-		printf("Sorry the file is existing but I can not read the file");
-		// return (*(int *)pipex_exit(NULL, argv[1], NO_PERMISSION, NULL));
+		return (pipex_exit(NULL, argv[1], NO_PERMISSION, NULL));
 	}
-	char *cmd[2];
-	cmd[0] = "ls";
-	execve("/bin/ls", cmd, env);
+	data = pipex_get_data(argc, argv, 0, env);
+	// cmd[0] = "ls";
+	// execve("/bin/ls", cmd, env);
 	return (0);
 }

@@ -6,21 +6,23 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:47 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/20 19:27:48 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/21 17:03:40 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	*pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
+int	pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
 {
-	(void)data;
 	(void)cmd;
 	if (err < 3)
+		pipex_perror(param, err);
+	if (err == 4)
 	{
+		// free data
 		pipex_perror(param, err);
 	}
-	return (0);
+	return (err);
 }
 
 void	pipex_perror(char *param, int err)
@@ -36,8 +38,12 @@ void	pipex_perror(char *param, int err)
 	{
 		ft_putstr_fd("I can not find the file you want to access ! ", 2);
 	}
-	if (err == NO_PERMISSION)
+	else if (err == NO_PERMISSION)
 	{
-		ft_putstr_fd(" don't have permission for this file", 2);
+		ft_putstr_fd("I don't have permission for this file", 2);
+	}
+	else if (err = NO_MEMORY)
+	{
+		ft_putstr_fd("I can not allocate memory correctly to the malloc", 2);
 	}
 }

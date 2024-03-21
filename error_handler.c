@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:47 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/21 17:03:40 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/21 17:35:18 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
 {
 	(void)cmd;
+	(void)data;
 	if (err < 3)
 		pipex_perror(param, err);
-	if (err == 4)
+	if (data)
 	{
-		// free data
 		pipex_perror(param, err);
 	}
 	return (err);
@@ -42,7 +42,7 @@ void	pipex_perror(char *param, int err)
 	{
 		ft_putstr_fd("I don't have permission for this file", 2);
 	}
-	else if (err = NO_MEMORY)
+	else if (err == NO_MEMORY)
 	{
 		ft_putstr_fd("I can not allocate memory correctly to the malloc", 2);
 	}

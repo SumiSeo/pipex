@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:02 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/21 18:43:57 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/24 18:21:00 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ enum		error_msg
 
 typedef struct s_pipexdata
 {
-	char	*env_path;
+	char	**path_arr;
 	char	**cmds;
 	int		in_fd;
 	int		out_fd;
@@ -52,5 +52,12 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 void		parse_path(int argc, char **argv, char **env);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strlen(const char *s);
+char		*ft_strnstr(const char *big, const char *little, size_t len);
+size_t		count_words(char const *s, char c);
+char		**free_array(char **array, int count);
+char		**ft_split(char const *s, char c);
+void		*ft_calloc(size_t count, size_t size);
 
 #endif

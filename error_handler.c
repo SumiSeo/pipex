@@ -6,13 +6,13 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:47 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/21 17:35:18 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:32:24 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
+int	pipex_exit(t_pipexdata *data, char *param, enum error_msg err, char ***cmd)
 {
 	(void)cmd;
 	(void)data;
@@ -25,7 +25,7 @@ int	pipex_exit(t_pipexdata *data, char *param, int err, char ***cmd)
 	return (err);
 }
 
-void	pipex_perror(char *param, int err)
+void	pipex_perror(char *param, enum error_msg err)
 {
 	(void)param;
 	ft_putstr_fd("OOPSY *_* ! I am R2 ... I a m analy..zing... problem:", 2);

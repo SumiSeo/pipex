@@ -6,7 +6,7 @@
 #    By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 14:06:51 by sumseo            #+#    #+#              #
-#    Updated: 2024/03/24 17:55:06 by sumseo           ###   ########.fr        #
+#    Updated: 2024/03/28 14:34:46 by sumseo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,14 @@ NAME = pipex
 
 #SRCS AND OBJS FOR COMPILING
 
-SRCS = pipex.c error_handler.c pipex_write.c pipex_parse.c pipex_utils.c pipex_split.c
-#INCLUDES = 
+SRCS = pipex.c error_handler.c pipex_parse.c init_pipe.c child_pipe.c
+INCLUDES = libft/
 OBJS = $(SRCS:%.c=%.o)
 
 #FLAGS
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
-#CLIB = 
+CLIB = -L libft/ -l libft
 DEBUGGER = -g3
 
 all : $(NAME)
@@ -31,7 +31,8 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@ $(DEBUGGER)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(CLIB) $(DEBUGGER)
+	make -C libft
+	$(CC) $(CFLAGS) -I $(INCLUDES) $(OBJS) -o $(NAME) $(CLIB) $(DEBUGGER)
 
 clean : 
 	rm -rf $(OBJS)

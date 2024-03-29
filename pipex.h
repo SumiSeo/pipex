@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:02 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 14:18:59 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:38:04 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int			pipex_exit(t_pipexdata *data, char *param, enum error_msg err,
 				char ***cmd);
 void		pipex_perror(char *param, enum error_msg err);
 void		create_pipe(char **argv, char *env);
-char		**parse_path(char *first_cmd, char *env);
+void		parse_path(char *first_cmd, char *env);
 void		execute_child_pipe(char *cmd, char **env);
-void		find_path(char *path, char *first_cmd, char **env);
+
+void		execute_cmd(char *cmd, char **arr);
 
 #endif

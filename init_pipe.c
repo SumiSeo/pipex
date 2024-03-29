@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:33:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 14:18:56 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:32:58 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	create_pipe(char **argv, char *env)
 			dup2(fd, STDIN_FILENO);
 			// dup2(STDOUT_FILENO, pipe_fd[1]);
 			printf("%s\n", env);
-			parse_path(argv[1], env);
+			parse_path(argv[2], env);
 		}
 		close(pipe_fd[1]);
 	}

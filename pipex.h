@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:02 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 16:11:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 19:01:44 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 # define PIPEX_H
 
 # include "libft/libft.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-// note that unistd is linux specific library
-# include <errno.h>
-# include <fcntl.h>
-# include <stddef.h>
-# include <stdio.h>
 # include <time.h>
 # include <unistd.h>
 
-// #define INVALID_ARGS "Arguments are invalid";
-
-enum		error_msg
+enum	e_error_msg
 {
 	INVALID_ARGS,
 	NO_FILE,
@@ -41,20 +37,10 @@ enum		error_msg
 	FORK_ISSUE
 };
 
-typedef struct s_pipexdata
-{
-	char	**env_path;
-	char	**cmds;
-	int		in_fd;
-	int		out_fd;
-
-}			t_pipexdata;
-
-int			pipex_exit(t_pipexdata *data, char *param, enum error_msg err,
-				char ***cmd);
-void		pipex_perror(char *param, enum error_msg err);
-void		create_pipe(char **argv, char *path, char **env);
-void		execute_cmd(char *cmd, char **cmds, char **arr, char **env);
-void		parse_path(char *first_cmd, char *path, char **env);
-char		**parse_cmd(char *cmd);
+int		pipex_exit(enum e_error_msg err);
+void	pipex_perror(enum e_error_msg err);
+void	create_pipe(char **argv, char *path, char **env);
+void	execute_cmd(char *cmd, char **cmds, char **arr, char **env);
+void	parse_path(char *first_cmd, char *path, char **env);
+char	**parse_cmd(char *cmd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 15:21:01 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 19:03:02 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,10 @@
 // }
 int	main(int argc, char **argv, char **env)
 {
-	t_pipexdata	*data;
-
-	// char			*cmd[2];
 	(void)argv;
-	(void)data;
 	if (argc != 5)
 	{
-		return (pipex_exit(NULL, NULL, INVALID_ARGS, NULL));
+		return (pipex_exit(INVALID_ARGS));
 	}
 	while (*env)
 	{
@@ -58,10 +54,6 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		env++;
 	}
-	printf("ENV %s\n", *env + 5);
 	create_pipe(argv, *env + 5, env);
-	// cmd[0] = "ls";
-	// execve("/bin/ls", cmd, env);
-	// create pipe line
 	return (0);
 }

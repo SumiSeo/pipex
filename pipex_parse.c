@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:28:21 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 16:30:17 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 17:34:00 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	**parse_cmd(char *cmd)
 	cmds = ft_split(cmd, ' ');
 	return (cmds);
 }
+
 void	execute_cmd(char *cmd, char **cmds, char **arr, char **env)
 {
 	int		i;
@@ -44,11 +45,9 @@ void	execute_cmd(char *cmd, char **cmds, char **arr, char **env)
 		joined_path = ft_strjoin(arr[i], joined_cmd);
 		if (access(joined_path, X_OK | F_OK) == 0)
 			break ;
+		else
+			free(joined_path);
 		i++;
 	}
-	// // char cm
-	// printf("TEST %s\n", joined_path);
-	// printf("ENV CHECK %s\n", env[0]);
-	printf("------EXECVE DOWN BELOW-----");
 	execve(joined_path, cmds, env);
 }

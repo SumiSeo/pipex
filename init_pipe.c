@@ -6,13 +6,13 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:33:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 14:32:58 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 15:20:48 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_pipe(char **argv, char *env)
+void	create_pipe(char **argv, char *path, char **env)
 {
 	int pipe_fd[2];
 
@@ -40,8 +40,8 @@ void	create_pipe(char **argv, char *env)
 			printf("File is correct\n");
 			dup2(fd, STDIN_FILENO);
 			// dup2(STDOUT_FILENO, pipe_fd[1]);
-			printf("%s\n", env);
-			parse_path(argv[2], env);
+			printf("%s\n", path);
+			parse_path(argv[2], path, env);
 		}
 		close(pipe_fd[1]);
 	}

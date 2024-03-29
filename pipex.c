@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 14:18:43 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 15:21:01 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **env)
 		env++;
 	}
 	printf("ENV %s\n", *env + 5);
-	create_pipe(argv, *env + 5);
+	create_pipe(argv, *env + 5, env);
 	// cmd[0] = "ls";
 	// execve("/bin/ls", cmd, env);
 	// create pipe line

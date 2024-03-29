@@ -6,25 +6,24 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:28:21 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/28 21:43:13 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:17:30 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**parse_path(char *first_cmd, char **env)
+char	**parse_path(char *first_cmd, char *env)
 {
 	char	**arr;
 	int		i;
-	char	*path;
 
+	(void)first_cmd;
 	i = 0;
+	printf("parsing\n");
+	printf("ENV %c\n", env[i]);
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], path, ft_strlen(path)) == 0)
-		{
-			arr = ft_split(env[i], ':');
-		}
+		arr = ft_split(&env[i], ':');
 		i++;
 	}
 	i = 0;
@@ -32,7 +31,7 @@ char	**parse_path(char *first_cmd, char **env)
 	{
 		printf("%s\n", arr[i]);
 		printf("-----\n");
-		find_path(arr[i], first_cmd, env);
+		// find_path(arr[i], first_cmd, env);
 		i++;
 	}
 	return (arr);

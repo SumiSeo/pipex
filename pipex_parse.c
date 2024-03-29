@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:28:21 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 16:07:57 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 16:30:17 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,13 @@ void	execute_cmd(char *cmd, char **cmds, char **arr, char **env)
 	{
 		joined_cmd = ft_strjoin(path, cmd);
 		joined_path = ft_strjoin(arr[i], joined_cmd);
-		// printf("%s\n", joined_path);
-		// printf("-----\n");
 		if (access(joined_path, X_OK | F_OK) == 0)
-		{
-			printf("Exists here : %s\n", joined_path);
 			break ;
-		}
 		i++;
 	}
-	// char cm
-	printf("TEST %s\n", joined_path);
-	printf("ENV CHECK %s\n", env[0]);
+	// // char cm
+	// printf("TEST %s\n", joined_path);
+	// printf("ENV CHECK %s\n", env[0]);
+	printf("------EXECVE DOWN BELOW-----");
 	execve(joined_path, cmds, env);
 }

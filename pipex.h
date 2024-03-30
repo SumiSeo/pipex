@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:02 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/30 16:05:03 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/30 16:07:35 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ enum	e_error_msg
 	NO_MEMORY,
 	NO_PATH,
 	PIPE_ISSUE,
-	FORK_ISSUE
+	FORK_ISSUE,
+	COMMAND_ISSUE
 };
 
 int		pipex_exit(enum e_error_msg err);

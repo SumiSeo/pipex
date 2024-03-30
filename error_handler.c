@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:47 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 19:03:42 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/30 16:30:01 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	pipex_exit(enum e_error_msg err)
 {
-	if (err < 3)
-		pipex_perror(err);
+	pipex_perror(err);
 	return (err);
 }
 
@@ -39,5 +38,9 @@ void	pipex_perror(enum e_error_msg err)
 	{
 		ft_putstr_fd("I can not allocate memory correctly to the malloc :-(\n",
 			2);
+	}
+	else if (err == COMMAND_ISSUE)
+	{
+		ft_putstr_fd("This command does not exist. :-(\n", 2);
 	}
 }

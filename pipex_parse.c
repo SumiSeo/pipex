@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:28:21 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 17:34:00 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/30 16:04:55 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_path(char *first_cmd, char *path, char **env)
 
 	arr = ft_split(path, ':');
 	cmds = parse_cmd(first_cmd);
-	execute_cmd(first_cmd, cmds, arr, env);
+	execute_cmd(cmds, arr, env);
 }
 
 char	**parse_cmd(char *cmd)
@@ -30,24 +30,28 @@ char	**parse_cmd(char *cmd)
 	return (cmds);
 }
 
-void	execute_cmd(char *cmd, char **cmds, char **arr, char **env)
+void	execute_cmd(char **cmds, char **arr, char **env)
 {
 	int		i;
 	char	*joined_path;
 	char	*path;
 	char	*joined_cmd;
+	int		j;
 
 	path = "/";
 	i = 0;
-	while (arr[i])
+	j = 0;
+	while (cmds[j])
 	{
-		joined_cmd = ft_strjoin(path, cmd);
-		joined_path = ft_strjoin(arr[i], joined_cmd);
-		if (access(joined_path, X_OK | F_OK) == 0)
-			break ;
-		else
-			free(joined_path);
-		i++;
+		i = 0;
+		while (arr[i])
+		{
+			joined_cmd = ft_strjoin(path, cmds[j]);
+			joined_path = ft_strjoin(arr[i], joined_cmd);
+			if (access(joined_path, X_OK | F_OK) == 0)
+				execve(joined_path, cmds, env);
+			i++;
+		}
+		j++;
 	}
-	execve(joined_path, cmds, env);
 }

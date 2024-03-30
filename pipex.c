@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:31:06 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 19:10:40 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 20:22:58 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		env++;
 	}
+	printf("TEST ! \n");
 	create_pipe(argv, *env + 5, env);
+
 	return (0);
 }

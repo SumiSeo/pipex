@@ -6,7 +6,7 @@
 /*   By: sumseo <sumseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:33:05 by sumseo            #+#    #+#             */
-/*   Updated: 2024/03/29 19:14:59 by sumseo           ###   ########.fr       */
+/*   Updated: 2024/03/29 20:25:43 by sumseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,23 @@ void	create_pipe(char **argv, char *path, char **env)
 		fd_in = open(argv[1], O_RDONLY);
 		if (fd_in == -1)
 		{
-			pipex_exit(NO_FILE);
+			// pipex_exit(NO_FILE);
+			ft_putendl_fd("Infile is not corect", 2);
 			// If in-file does not exist I have to quit child program but parent should continue
-			exit(0);
 		}
-		if (fd_in != -1)
+		else
 		{
+			printf("Infile is correct\n");
 			dup2(fd_in, STDIN_FILENO);
 			dup2(pipe_fd[1], STDOUT_FILENO);
 			parse_path(argv[2], path, env);
-			close(pipe_fd[1]);
 		}
+		close(pipe_fd[1]);
 	}
 	else
 	{
-		printf("PARENT\n");
 		wait(0);
+		printf("PARENTTT\n");
 		close(pipe_fd[1]);
 		fd_out = open(argv[4], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		if (fd_out == -1)
